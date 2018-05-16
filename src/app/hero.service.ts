@@ -48,6 +48,7 @@ updateHero (hero: Hero): Observable<any> {
 
 addHero (hero: Hero): Observable<Hero> {
   return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
+    // tslint:disable-next-line:no-shadowed-variable
     tap((hero: Hero) => this.log(`added hero w/ id=${hero.id}`)),
     catchError(this.handleError<Hero>('addHero'))
   );
@@ -64,7 +65,7 @@ deleteHero (hero: Hero | number): Observable<Hero> {
 }
 
 /* GET heroes whose name contains search term */
-searchHeroes(term: string): Observable<Hero[]>{
+searchHeroes(term: string): Observable<Hero[]> {
   if (!term.trim()) {
     // if not search term, return empty hero array
     return of([]);
